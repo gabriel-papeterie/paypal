@@ -649,6 +649,7 @@ class PayPal extends PaymentModule
 			'PayPal_lang_code' => (isset($values[$this->context->language->iso_code]) ? $values[$this->context->language->iso_code] : 'en_US'),
 			'PayPal_tracking_code' => $this->getTrackingCode((int)Configuration::get('PAYPAL_PAYMENT_METHOD')),
 			'include_form' => true,
+			'id_product_attribute' => $id_product_attribute,
 			'product_minimal_quantity' => $minimal_quantity,
 			'template_dir' => dirname(__FILE__).'/views/templates/hook/'));
 
