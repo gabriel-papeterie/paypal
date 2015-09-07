@@ -44,6 +44,9 @@ if ($quantity && $quantity > 0)
 
 	if (!$product->available_for_order)
 		die('0');
+
+	if ($product->getPrice() < 1)
+		die('0');
 	
 	if ($product_quantity > 0)
 		die('1');
