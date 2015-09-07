@@ -631,6 +631,17 @@ class PayPal extends PaymentModule
 		$values = array('en' => 'en_US', 'fr' => 'fr_FR', 'de' => 'de_DE');
 		$paypal_logos = $this->paypal_logos->getLogos();
 
+		$id_product = (int)Tools::getValue('id_product');
+		$id_product_attribute = (int)Product::getDefaultAttribute($id_product);
+
+		if ($id_product_attribute)
+			$minimal_quantity = Attribute::getAttributeMinimalQty($id_product_attribute);
+		else
+		{
+			$product = new Product($id_product);
+			$minimal_quantity = $product->minimal_quantity;
+		}
+
 		$this->context->smarty->assign(array(
 			'PayPal_payment_type' => 'cart',
 			'paypal_express_checkout_shortcut_logo' => isset($paypal_logos['ExpressCheckoutShortcutButton']) ? $paypal_logos['ExpressCheckoutShortcutButton'] : false,
@@ -638,6 +649,7 @@ class PayPal extends PaymentModule
 			'PayPal_lang_code' => (isset($values[$this->context->language->iso_code]) ? $values[$this->context->language->iso_code] : 'en_US'),
 			'PayPal_tracking_code' => $this->getTrackingCode((int)Configuration::get('PAYPAL_PAYMENT_METHOD')),
 			'include_form' => true,
+			'product_minimal_quantity' => $minimal_quantity,
 			'template_dir' => dirname(__FILE__).'/views/templates/hook/'));
 
 		return $this->fetchTemplate('express_checkout_shortcut_button.tpl');
