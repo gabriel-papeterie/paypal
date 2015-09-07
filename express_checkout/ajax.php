@@ -44,8 +44,15 @@ if ($quantity && $quantity > 0)
 
 	if (!$product->available_for_order)
 		die('0');
+	
+	if ($id_product_attribute)
+		$minimal_quantity = Attribute::getAttributeMinimalQty($id_product_attribute);
+	else
+		$minimal_quantity = $product->minimal_quantity;
 
-	if ($product->getPrice() < 1)
+	$unit_price = $product->getPrice();
+
+	if ($unit_price * $minimal_quantity < 1)
 		die('0');
 	
 	if ($product_quantity > 0)
