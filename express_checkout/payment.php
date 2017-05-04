@@ -27,6 +27,7 @@
 include_once dirname(__FILE__).'/../../../config/config.inc.php';
 include_once _PS_ROOT_DIR_.'/init.php';
 
+include_once _PS_MODULE_DIR_.'paypal/paypal_orders.php';
 include_once _PS_MODULE_DIR_.'paypal/express_checkout/process.php';
 include_once _PS_MODULE_DIR_.'paypal/express_checkout/submit.php';
 include_once _PS_MODULE_DIR_.'paypal/paypal_login/PayPalLoginUser.php';
@@ -377,7 +378,15 @@ if ($ppec->ready && !empty($ppec->token) && (Tools::isSubmit('confirmation') || 
             $ppec->redirectToAPI();
         }
 
-        validateOrder($customer, $cart, $ppec);
+        $transaction_id = $ppec->result['PAYMENTINFO_0_TRANSACTIONID'];
+
+        if(PayPalOrder::getIdOrderByTransactionId($transaction_id)){
+            $id_order = PayPalOrder::getIdOrderByTransactionId($transaction_id);
+            
+            $ppec->currentOrder = $id_order;
+        } else {
+            validateOrder($customer, $cart, $ppec);
+        }
 
         unset($ppec->context->cookie->{PaypalExpressCheckout::$cookie_name});
 
