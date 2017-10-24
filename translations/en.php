@@ -20,7 +20,6 @@ $_MODULE['<{paypal}classic>paypal_f4735eca0c2be308ee5b625e3d074926'] = 'Show Pay
 $_MODULE['<{paypal}classic>paypal_8690095ec5ecadfedb879b1a0f544770'] = 'You can increase your conversion rate by presenting the benefits of PayPal to your customers on the payment methods selection page.';
 $_MODULE['<{paypal}classic>paypal_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
 $_MODULE['<{paypal}classic>paypal_28e74fe361c9fb4e28da3902258fa758'] = 'Your PayPal account is currently configured to accept payments on the Sandbox (test environment). Any transaction will be fictitious. Disable the option to accept actual payments (production environment) and log in with your PayPal credentials';
-$_MODULE['<{paypal}classic>paypal_97605e865f0198241802674429ed5ebb'] = 'Il tuo conto PayPal è connesso in modo corretto, quindi ora puoi ricevere pagamenti.';
 $_MODULE['<{paypal}classic>paypal_b209ab078c273a14a042f9efc005979d'] = 'Pay with PayPal';
 $_MODULE['<{paypal}classic>paypal_28e67f5e64fbca774631ef32313c8059'] = 'It\'s easy, simple and secure';
 $_MODULE['<{paypal}classic>paypal_731754f15074410d6a376c1be5be4f20'] = 'Pay with a credit or debit card';

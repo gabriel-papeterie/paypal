@@ -372,9 +372,9 @@ class MethodEC extends AbstractMethodPaypal
             Db::getInstance()->update(
                 'paypal_capture',
                 array(
-                    'id_capture' => $response['TRANSACTIONID'],
-                    'capture_amount' => $response['AMT'],
-                    'result' => $response['PAYMENTSTATUS'],
+                    'id_capture' => pSQL($response['TRANSACTIONID']),
+                    'capture_amount' => pSQL($response['AMT']),
+                    'result' => pSQL($response['PAYMENTSTATUS']),
                 ),
                 'id_paypal_order = '.(int)$id_paypal_order
             );
